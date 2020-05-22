@@ -21,6 +21,19 @@ class User(db.Model):
         self.password = password
 
 
+class Product(db.Model):
+    __table_name__ = 'product'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True)
+    price = db.Column(db.Float(80))
+    quantity = db.Column(db.Float(80))
+
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+        self.quantity = 0
+
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     return render_template('index.html')
@@ -71,5 +84,5 @@ def logout():
 if __name__ == '__main__':
     app.debug = True
     db.create_all()
-    app.run(host='0.0.0.0')
+    app.run()
     print("abc")

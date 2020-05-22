@@ -1,55 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 {% extends "header.html" %}
 {% block content %}
     <div class="col-25">
             <div class="container">
-                <form oninput="result1.value=parseInt(num1.value)*30;
-                result2.value=parseInt(num2.value)*15;
-                total.value=parseInt(num1.value)*30+parseInt(num2.value)*15;">
+                <div class="row">
+                    <div class="col-50">
+                        <form oninput="result1.value=parseInt(num1.value)*30;
+                        result2.value=parseInt(num2.value)*15;">
 
-                <h4>Cart
-                <span class="price" style="color:black">
-                <i class="fa fa-shopping-cart"></i>
-                <b>2</b>
-                </span>
-                </h4>
-                <p><a href="#">Product 1</a>
-                    <select name="num1">
-                        <option value="0">0</option>
-                        <option value="1" selected>1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                    </select>
-                    <span class="price">$<output name="result1" for="num1">30</output></span></p>
-                <p><a href="#">Product 2</a>
-                    <select name="num2">
-                        <option value="0">0</option>
-                        <option value="1" selected>1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                    </select>
-                    <span class="price">$<output name="result2" for="num2">15</output></span></p>
-                <hr>
-                <p>Total <span class="price" style="color:black"><b>$<output name="total" for="num1 num2">45</output></b></span></p>
-                </form>
+                        <h4>Cart
+                        <span class="price" style="color:black">
+                        <i class="fa fa-shopping-cart"></i>
+                        <b>2</b>
+                        </span>
+                        </h4>
+                        <p>
+                            <a href="#">Product 1</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <select name="num1" onchange="price_update()">
+                                <option value="0">0</option>
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                            </select>
+                            <span class="price">
+                                $<output name="result1" for="num1" id="price1">30</output>
+                            </span>
+                        </p>
+                        <p>
+                            <a href="#">Product 2</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <select name="num2" onchange="price_update()">
+                                <option value="0">0</option>
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                            </select>
+                            <span class="price">
+                                $<output name="result2" for="num2" id="price2">15</output>
+                            </span>
+                        </p>
+                        <hr>
+                        <p>
+                            VAT
+                            <span class="price"> 13% </span>
+                        </p>
+                        <hr>
+                        <p>
+                            Total
+                            <span class="price" style="color:black">
+                                <b>$<output name="total" id="total">50.75</output></b>
+                            </span>
+                        </p>
+                        </form>
+                    </div>
+                    <div class="col-50">
+                        <h4>Shipping Option
+                        <span class="price" style="color:black">
+                        </span>
+                        </h4>
+                        haha
+                    </div>
+                </div>
             </div>
         </div>
     <br> <br>
