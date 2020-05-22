@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        g
+    </title>
+</head>
+<body>
+    <form method="POST" action="/calculate">
+        <h3> test </h3>
+        <input type="text" name="num">
+        <button type="submit">Check</button>
+    </form>
+    <div>
+        <p>
+            {% if num == None %}
+                <h5> Empty </h5>
+            {% else %}
+                {% for i in range(1,10) %}
+                    <p>{{num}} x {{i}} = {{num*i}}</p>
+                {% endfor %}
+            {% endif %}
+        </p>
+    </div>
+    <div>
+        <button type="submit">Next</button>
+    </div>
+</body>
+</html>
