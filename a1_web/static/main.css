@@ -6,6 +6,14 @@
   margin: 0 -16px;
 }
 
+.row-back {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
 .col-25 {
   -ms-flex: 25%; /* IE10 */
   flex: 25%;
@@ -59,6 +67,17 @@ input[type=text] {
   border-radius: 3px;
 }
 
+.apply {
+  background-color: #4CAF50;
+  color: white;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+
 label {
   margin-bottom: 10px;
   display: block;
@@ -97,6 +116,9 @@ next to each other (and change the direction - make the "cart" column go on top)
 @media (max-width: 800px) {
   .row {
     flex-direction: column-reverse;
+  }
+  .row-back {
+    flex-direction: column;
   }
   .col-25 {
     margin-bottom: 20px;
