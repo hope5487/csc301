@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body onload="load_info()">
 {% extends "header.html" %}
 {% block content %}
     <div class="col-25">
@@ -23,7 +23,7 @@
                         </h4>
                         <p>
                             <a href="#">Product 1</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <select name="num1" onchange="price_update()">
+                            <select name="num1" id="num1" onchange="price_update(), store_info()">
                                 <option value="0">0</option>
                                 <option value="1" selected>1</option>
                                 <option value="2">2</option>
@@ -41,7 +41,7 @@
                         </p>
                         <p>
                             <a href="#">Product 2</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <select name="num2" onchange="price_update()">
+                            <select name="num2" id="num2" onchange="price_update(), store_info()">
                                 <option value="0">0</option>
                                 <option value="1" selected>1</option>
                                 <option value="2">2</option>
@@ -90,9 +90,9 @@
                         <span class="price" style="color:black">
                         </span>
                         </h4>
-                        <input type="radio" name="shipping" value="standard" checked="checked" onclick="shipping_update1()">Standard Shipping <br>
-                        <input type="radio" name="shipping" value="expedited" onclick="shipping_update2()">Expedited Shipping <br>
-                        <input type="radio" name="shipping" value="Express" onclick="shipping_update3()">Express Shipping <br>
+                        <input type="radio" name="shipping" value="standard" id="standard" checked="checked" onclick="shipping_update1(), store_info()">Standard Shipping <br>
+                        <input type="radio" name="shipping" value="expedited" id="expedited" onclick="shipping_update2(), store_info()">Expedited Shipping <br>
+                        <input type="radio" name="shipping" value="express" id="express" onclick="shipping_update3(), store_info()">Express Shipping <br>
                         <br>
                         <hr>
                         <h4>Discount Code</h4>

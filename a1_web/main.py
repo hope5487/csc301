@@ -34,6 +34,17 @@ class Product(db.Model):
         self.quantity = 0
 
 
+class Coupon(db.Model):
+    __table_name__ = 'coupon'
+    id = db.Column(db.Integer, primary_key=True)
+    code = db.Column(db.String(80), unique=True)
+    percent = db.Column(db.Integer)
+
+    def __init__(self, code, percent):
+        self.code = code
+        self.percent = percent
+
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     return render_template('index.html')
@@ -44,19 +55,20 @@ def checkout():
     return render_template('checkout.html')
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['POST'])
 def login():
-    if request.method == 'GET':
-        return render_template('login.html')
+    username = request.form['username']
+    password = request.form['password']
+    verify(username, password)
+
+
+def verify(name, psw):
+    data = User.query.filter_by(username=name, password=psw).first()
+    if data is not None:
+        session['logged_in'] = True
     else:
-        name = request.form['username']
-        psw = request.form['password']
-        data = User.query.filter_by(username=name, password=psw).first()
-        if data is not None:
-            session['logged_in'] = True
-        else:
-            session['logged_in'] = False
-        return redirect(url_for('home', num=None))
+        session['logged_in'] = False
+    return redirect(url_for('home', num=None))
 
 
 @app.route('/register/', methods=['GET', 'POST'])
@@ -85,4 +97,3 @@ if __name__ == '__main__':
     app.debug = True
     db.create_all()
     app.run()
-    print("abc")

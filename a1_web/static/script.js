@@ -1,3 +1,19 @@
+function store_info() {
+    var x1 = document.getElementById("num1").selectedIndex;
+    var y1 = document.getElementById("num1").options;
+    var x2 = document.getElementById("num2").selectedIndex;
+    var y2 = document.getElementById("num2").options;
+    localStorage.product1 = y1[x1].index;
+    localStorage.product2 = y2[x2].index;
+}
+
+function load_info() {
+    if (localStorage.product1 != null && localStorage.product2 != null) {
+        document.getElementById('num1').options[localStorage.getItem('product1')].selected = true;
+        document.getElementById('num2').options[localStorage.getItem('product2')].selected = true;
+    }
+}
+
 function price_update() {
     var price1 = parseInt(document.getElementById('price1').value);
     var price2 = parseInt(document.getElementById('price2').value);
