@@ -55,20 +55,19 @@ def checkout():
     return render_template('checkout.html')
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'GET':
+        return render_template('login.html')
     username = request.form['username']
     password = request.form['password']
-    verify(username, password)
-
-
-def verify(name, psw):
-    data = User.query.filter_by(username=name, password=psw).first()
+    data = User.query.filter_by(username=username, password=password).first()
     if data is not None:
         session['logged_in'] = True
+        return redirect(url_for('home'))
     else:
         session['logged_in'] = False
-    return redirect(url_for('home', num=None))
+    return redirect(url_for('login'))
 
 
 @app.route('/register/', methods=['GET', 'POST'])
@@ -82,7 +81,7 @@ def register():
             new_user = User(username=username, password=password)
             db.session.add(new_user)
             db.session.commit()
-            return render_template('login.html')
+            return redirect(url_for('login'))
         return render_template('register2.html')
     return render_template('register1.html')
 

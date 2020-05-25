@@ -14,6 +14,15 @@ class UnitTest(unittest.TestCase):
             client.post('/login', data=dict(username='s', password='s'))
             with client.session_transaction() as sess:
                 assert sess['logged_in']
+        return ''
+
+    def test_logout(self):
+        self.app = app.test_client()
+        with app.test_client() as client:
+            client.post('/login', data=dict(username='s', password='s'))
+            with client.session_transaction() as sess:
+                assert sess['logged_in']
+        return ''
 
 
 if __name__ == '__main__':
