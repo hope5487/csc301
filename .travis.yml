@@ -10,5 +10,5 @@ after_success:
 - coveralls
 deploy:
   provider: gae
-  keyfile: csc301-a1-flask-facea28fb186
+  keyfile: csc301-a1-flask-facea28fb186.json
   project: csc301-a1-flask
