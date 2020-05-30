@@ -12,7 +12,3 @@ deploy:
   provider: gae
   keyfile: csc301-a1-flask-facea28fb186
   project: csc301-a1-flask
-before_install:
-- openssl aes-256-cbc -K $encrypted_6ec046824e5f_key -iv $encrypted_6ec046824e5f_iv
-  -in csc301-a1-flask-facea28fb186.json.enc -out csc301-a1-flask-facea28fb186.json
-  -d
