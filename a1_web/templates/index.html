@@ -9,54 +9,54 @@
 {% extends "header.html" %}
 {% block content %}
     <div class="col-25">
-            <div class="container">
-                <div class="row">
-                    <div class="col-50">
-                        <form oninput="result1.value=parseInt(num1.value)*30;
-                        result2.value=parseInt(num2.value)*15;">
-
-                        <h4>Cart
-                        <span class="price" style="color:black">
-                        <i class="fa fa-shopping-cart"></i>
-                        <b>2</b>
-                        </span>
-                        </h4>
+        <div class="container">
+            <div class="row">
+                <div class="col-50">
+                    <h4>Cart
+                    <span class="price" style="color:black">
+                    <i class="fa fa-shopping-cart"></i>
+                    <b>2</b>
+                    </span>
+                    </h4>
+                    <form method="POST" action="/calculate">
                         <p>
-                            <a href="#">Product 1</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <select name="num1" id="num1" onchange="price_update(), store_info()">
+                        <a href="#">Product 1</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <select name="select1" id="select1" onchange="click_modify()">
                                 <option value="0">0</option>
-                                <option value="1" selected>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
+                                <option value="10" selected>1</option>
+                                <option value="20">2</option>
+                                <option value="30">3</option>
+                                <option value="40">4</option>
+                                <option value="50">5</option>
+                                <option value="60">6</option>
+                                <option value="70">7</option>
+                                <option value="80">8</option>
+                                <option value="90">9</option>
                             </select>
                             <span class="price">
-                                $<output name="result1" for="num1" id="price1">30</output>
+                                $<output name="num1" id="num1">{{ num1 }}</output>
                             </span>
                         </p>
                         <p>
-                            <a href="#">Product 2</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <select name="num2" id="num2" onchange="price_update(), store_info()">
+                            <a href="#">Product 2</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <select name="select2" id="select2" onchange="click_modify()">
                                 <option value="0">0</option>
-                                <option value="1" selected>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
+                                <option value="20" selected>1</option>
+                                <option value="40">2</option>
+                                <option value="60">3</option>
+                                <option value="80">4</option>
+                                <option value="100">5</option>
+                                <option value="120">6</option>
+                                <option value="140">7</option>
+                                <option value="160">8</option>
+                                <option value="180">9</option>
                             </select>
                             <span class="price">
-                                $<output name="result2" for="num2" id="price2">15</output>
+                                $<output name="num2" id="num2">{{ num2 }}</output>
                             </span>
                         </p>
+                        <input type="submit" name="modify" id="modify" value="" onclick="store_info()"
+                               style="background-color:transparent; border:0px transparent solid;">
                         <hr>
                         <p>
                             Shipping
@@ -83,29 +83,29 @@
                                 <b>$<output name="total" id="total">50.85</output></b>
                             </span>
                         </p>
-                        </form>
-                    </div>
-                    <div class="col-50">
-                        <h4>Select Shipping Method
-                        <span class="price" style="color:black">
-                        </span>
-                        </h4>
-                        <input type="radio" name="shipping" value="standard" id="standard" checked="checked" onclick="shipping_update1(), store_info()">Standard Shipping <br>
-                        <input type="radio" name="shipping" value="expedited" id="expedited" onclick="shipping_update2(), store_info()">Expedited Shipping <br>
-                        <input type="radio" name="shipping" value="express" id="express" onclick="shipping_update3(), store_info()">Express Shipping <br>
-                        <br>
-                        <hr>
-                        <h4>Discount Code</h4>
+                        <div class="col-50">
+                            <h4>Select Shipping Method
+                            <span class="price" style="color:black">
+                            </span>
+                            </h4>
+                            <input type="radio" name="shipping" value="0" id="standard" checked="checked" onclick="shipping_update1(), store_info()">Standard Shipping <br>
+                            <input type="radio" name="shipping" value="5" id="expedited" onclick="shipping_update2(), store_info()">Expedited Shipping <br>
+                            <input type="radio" name="shipping" value="10" id="express" onclick="shipping_update3(), store_info()">Express Shipping <br>
+                            <br>
+                            <hr>
+                            <h4>Discount Code</h4>
                             <div class="col-50">
                                 <input type="text" id="discount" name="discount">
-                            <div class="col-25">
-                                <input type="submit" id="discount-btn" value="Apply" class="apply" onclick="discount()">
+                                <div class="col-25">
+                                    <input type="submit" id="discount-btn" value="Apply" class="apply" onclick="discount()">
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     <br> <br>
     <div class="row">
         <div class="col-75">

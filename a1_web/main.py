@@ -1,4 +1,5 @@
 """Csc301 Web App"""
+from typing import Optional, Any
 
 from flask import Flask, render_template, request, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -45,9 +46,24 @@ class Coupon(db.Model):
         self.percent = percent
 
 
-@app.route('/', methods=['GET', 'POST'])
-def home():
-    return render_template('index.html')
+@app.route('/')
+@app.route('/<float:num1>%<float:num2>%<float:result>')
+def home(num1=10.0, num2=20.0, result=33.9):
+    return render_template('index.html', num1=num1, num2=num2, result=result)
+
+
+@app.route('/calculate', methods=['GET', 'POST'])
+def calculate():
+    if request.method == 'POST':
+        select1 = float(request.form.get('select1'))
+        print(select1)
+        select2 = float(request.form.get('select2'))
+        print(select2)
+        option = float(request.form['shipping'])
+        result = round((select1 + select2 + option) * 1.13, 2)
+    else:
+        return None
+    return redirect(url_for('home', num1=select1, num2=select2, result=result))
 
 
 @app.route('/checkout', methods=['POST'])
