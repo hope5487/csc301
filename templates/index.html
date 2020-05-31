@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body onload="load_info()">
+<body onload="load_info(); first_load()">
 {% extends "header.html" %}
 {% block content %}
     <div class="col-25">
@@ -61,26 +61,26 @@
                         <p>
                             Shipping
                             <span class="price">
-                                $<output name="shipping" id="shipping">0</output>
+                                $<output name="shipping" id="shipping">{{ shipping }}</output>
                             </span>
                         </p>
                         <p>
-                        Discount
-                        <span class="price">
-                            $<output name="dp" id="dp">0</output>
-                        </span>
+                            Discount&nbsp;<output name="discount_percent" id="discount_percent">{{ discount_percent }}</output>%
+                            <span class="price">
+                                -$<output name="discount_total" id="discount_total">{{ discount_total }}</output>
+                            </span>
                         </p>
                         <p>
                             VAT 13%
                             <span class="price">
-                                $<output name="vat" id="vat">5.85</output>
+                                $<output name="vat" id="vat">{{ vat }}</output>
                             </span>
                         </p>
                         <hr>
                         <p>
                             Total
                             <span class="price" style="color:black">
-                                <b>$<output name="total" id="total">50.85</output></b>
+                                <b>$<output name="total" id="total">{{ result }}</output></b>
                             </span>
                         </p>
                         <div class="col-50">
@@ -88,20 +88,25 @@
                             <span class="price" style="color:black">
                             </span>
                             </h4>
-                            <input type="radio" name="shipping" value="0" id="standard" checked="checked" onclick="shipping_update1(), store_info()">Standard Shipping <br>
-                            <input type="radio" name="shipping" value="5" id="expedited" onclick="shipping_update2(), store_info()">Expedited Shipping <br>
-                            <input type="radio" name="shipping" value="10" id="express" onclick="shipping_update3(), store_info()">Express Shipping <br>
+                            <input type="radio" name="radio-shipping" value="0" id="standard" checked="checked"
+                                   onclick="click_modify()">Standard Shipping <br>
+                            <input type="radio" name="radio-shipping" value="5" id="expedited"
+                                   onclick="click_modify()">Expedited Shipping <br>
+                            <input type="radio" name="radio-shipping" value="10" id="express"
+                                   onclick="click_modify()">Express Shipping <br>
                             <br>
                             <hr>
                             <h4>Discount Code</h4>
-                            <div class="col-50">
-                                <input type="text" id="discount" name="discount">
-                                <div class="col-25">
-                                    <input type="submit" id="discount-btn" value="Apply" class="apply" onclick="discount()">
-                                </div>
-                            </div>
                         </div>
                     </form>
+                    <div class="col-50">
+                        <form method="POST" action="/discount">
+                            <input type="text" id="discount_code" name="discount_code">
+                            <div class="col-25">
+                                <input type="submit" id="discount-btn" value="Apply" class="apply">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
