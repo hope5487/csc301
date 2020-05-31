@@ -3,19 +3,44 @@ function store_info() {
     var y1 = document.getElementById("select1").options;
     var x2 = document.getElementById("select2").selectedIndex;
     var y2 = document.getElementById("select2").options;
-    localStorage.product1 = y1[x1].index;
-    localStorage.product2 = y2[x2].index;
+    localStorage.product_storage1 = y1[x1].index;
+    localStorage.product_storage2 = y2[x2].index;
+    var radios = document.getElementsByName("radio-shipping");
+    for(var i=0;i<radios.length;i++){
+        if (radios[i].checked === true){
+            localStorage.radio_storage = radios[i].id
+            break;
+        }
+    }
 }
 
 function load_info() {
-    if (localStorage.product1 != null && localStorage.product2 != null) {
-        document.getElementById('select1').options[localStorage.getItem('product1')].selected = true;
-        document.getElementById('select2').options[localStorage.getItem('product2')].selected = true;
+    if (localStorage.product_storage1 != null && localStorage.product_storage2 != null) {
+        document.getElementById('select1').options[localStorage.getItem('product_storage1')].selected = true;
+        document.getElementById('select2').options[localStorage.getItem('product_storage2')].selected = true;
+    }
+    if (localStorage.radio_storage != null) {
+        var radios = document.getElementsByName("radio-shipping");
+        var val = localStorage.getItem('radio_storage');
+        console.log(val);
+        for(var i=0;i<radios.length;i++){
+            if (radios[i].id === val){
+                radios[i].checked = true;
+                break;
+            }
+        }
     }
 }
 
 function click_modify() {
     document.getElementById('modify').click()
+}
+
+function first_load() {
+    if (window.location.pathname === '/') {
+        load_info()
+        click_modify()
+    }
 }
 
 function price_update() {
@@ -38,21 +63,6 @@ function discount() {
     } else {
         alert("Wrong Discount Code!");
     }
-}
-
-function shipping_update1() {
-    document.getElementById('shipping').value = 0;
-    price_update();
-}
-
-function shipping_update2() {
-    document.getElementById('shipping').value = 5;
-    price_update();
-}
-
-function shipping_update3() {
-    document.getElementById('shipping').value = 10;
-    price_update();
 }
 
 function discount_disable() {
