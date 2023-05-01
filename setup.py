@@ -10,7 +10,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'click==7.1.2',
-        'Flask==1.1.2',
+        'Flask==2.3.2',
         'Flask-SQLAlchemy==2.4.1',
         'itsdangerous==1.1.0',
         'Jinja2==2.11.2',
